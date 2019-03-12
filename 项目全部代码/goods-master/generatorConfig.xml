@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/goods?characterEncoding=utf-8"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="jlu.edu.cn.lsh.po" targetProject=".\src">
+            <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="jlu.edu.cn.lsh.mapper"  targetProject=".\src">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="jlu.edu.cn.lsh.mapper"  targetProject=".\src">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <!--<table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="ID" sqlStatement="DB2" identity="true" />
+            <columnOverride column="DATE_FIELD" property="startDate" />
+            <ignoreColumn column="FRED" />
+            <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+        </table>-->
+
+        <table tableName="admin"></table>
+        <table tableName="book"></table>
+        <table tableName="cartitem"></table>
+        <table tableName="category"></table>
+        <table tableName="t_order"></table>
+        <table tableName="orderitem"></table>
+        <table tableName="user"></table>
+
+    </context>
+</generatorConfiguration>

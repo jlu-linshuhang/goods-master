@@ -1,0 +1,128 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
+
+  <display-name>springmvc</display-name>
+
+
+  <!--通配符加载spring配置文件-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/spring-*.xml</param-value>
+  </context-param>
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!--映射.css和.js文件-->
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.jpg</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name >default </servlet-name >
+    <url-pattern>*.js</url-pattern>
+  </servlet-mapping >
+  <servlet-mapping >
+    <servlet-name >default </servlet-name >
+    <url-pattern>*.css</url-pattern>
+  </servlet-mapping >
+  
+  
+
+
+  <!--前端控制器过滤.action的页面-->
+  <servlet>
+    <servlet-name>librarydisp</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:springmvc/springmvc.xml</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>librarydisp</servlet-name>
+    <url-pattern>*.action</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>springmvc_rest</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:springmvc/springmvc.xml</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springmvc_rest</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+
+
+
+<!--  <servlet>
+    <servlet-name>VerifyCodeServlet</servlet-name>
+    <servlet-class>cn.itcast.vcode.servlet.VerifyCodeServlet</servlet-class>
+
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VerifyCodeServlet</servlet-name>
+    <url-pattern>VerifyCodeServlet</url-pattern>
+  </servlet-mapping>-->
+
+  <!--post乱码-->
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>utf-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!--登陆过滤器-->
+
+  <filter>
+    <display-name>LoginFilter</display-name>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>jlu.edu.cn.lsh.filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/cart/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/order/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <display-name>AdminLoginFilter</display-name>
+    <filter-name>AdminLoginFilter</filter-name>
+    <filter-class>jlu.edu.cn.lsh.filter.AdminLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AdminLoginFilter</filter-name>
+    <url-pattern>/adminjsps/admin/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>AdminLoginFilter</filter-name>
+    <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>AdminLoginFilter</filter-name>
+    <url-pattern>/adminOrder/*</url-pattern>
+  </filter-mapping>
+
+
+</web-app>
